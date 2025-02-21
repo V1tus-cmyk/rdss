@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TESTE</title>
+
+    <style>
+        body {
+            background-color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .painel {
+            background-color: white;
+            width: 500px;
+            height: 500px;
+            border-radius: 20px;
+            text-align: center;
+            padding-top: 50px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            position: relative;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            color: #555;
+        }
+
+        /* Estilo da imagem de impressão digital */
+        .pressionar {
+            width: 150px;
+            height: 150px;
+            background-image: url('https://i.postimg.cc/x1gFvxfS/Pngtree-human-body-fingerprint-icon-design-4476231.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            display: block;
+            margin: 30px auto; /* Centraliza a imagem */
+            cursor: pointer;
+        }
+
+        .pressionar:active {
+            background-color: #e0e0e0;
+        }
+
+        /* Estilo do popup */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        #popup .popup-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+
+        #popup h2 {
+            color: red;
+            font-size: 24px;
+        }
+
+        #popup p {
+            color: #555;
+            font-size: 18px;
+        }
+
+        /* Estilo da imagem adicional */
+        #imagem-adicional {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #imagem-adicional img {
+            width: 200px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* Estilo do botão "Ver mais" */
+        #ver-mais {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #ver-mais:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="painel">
+        <h1>Teste de Diagnóstico</h1> <!-- Título alterado -->
+        <h2>Pressione sua digital para realizar o diagnóstico...</h2>
+
+        <!-- Imagem de impressão digital, centralizada abaixo do texto -->
+        <div class="pressionar" id="pressionar"></div>
+
+        <!-- Popup de Aviso -->
+        <div id="popup">
+            <div class="popup-content">
+                <h2>Você está linda!</h2> <!-- Texto alterado -->
+                <p>Veja como vai ficar se continuar assim.</p> <!-- Texto alterado -->
+                <!-- Botão para ver mais -->
+                <button id="ver-mais">Ver mais</button>
+                <!-- Imagem adicional -->
+                <div id="imagem-adicional">
+                    <img src="https://i.postimg.cc/qRnsLwfL/Whats-App-Image-2025-02-21-at-01-36-42.jpg" alt="Imagem de exemplo">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const pressionar = document.getElementById('pressionar');
+        const popup = document.getElementById('popup');
+        const verMaisBtn = document.getElementById('ver-mais');
+        const imagemAdicional = document.getElementById('imagem-adicional');
+
+        // Variáveis para controle do pressionamento
+        let pressionando = false;
+
+        // Quando começa o pressionamento
+        pressionar.addEventListener('mousedown', () => {
+            pressionando = true;
+            popup.style.display = 'none'; // Garante que o popup esteja escondido no início
+        });
+
+        // Quando o botão é solto
+        pressionar.addEventListener('mouseup', () => {
+            if (pressionando) {
+                // Exibe o popup quando o usuário soltar
+                popup.style.display = 'flex';
+            }
+            pressionando = false;
+        });
+
+        // Para dispositivos móveis (touch)
+        pressionar.addEventListener('touchstart', () => {
+            pressionando = true;
+            popup.style.display = 'none'; // Garante que o popup esteja escondido no início
+        });
+
+        pressionar.addEventListener('touchend', () => {
+            if (pressionando) {
+                // Exibe o popup quando o usuário soltar
+                popup.style.display = 'flex';
+            }
+            pressionando = false;
+        });
+
+        // Mostrar a imagem adicional quando o botão "Ver mais" for clicado
+        verMaisBtn.addEventListener('click', () => {
+            imagemAdicional.style.display = 'block'; // Exibe a imagem
+            verMaisBtn.style.display = 'none'; // Esconde o botão "Ver mais"
+        });
+    </script>
+
+</body>
+</html>
